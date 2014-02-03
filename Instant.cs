@@ -28,5 +28,31 @@ namespace Astronomy
             if (this.TotalSeconds < 0)
             { this.TotalSeconds += 86400; }
         }
+
+        #region Mathematical Operators
+        public static Instant operator +(Instant instant1, Instant instant2)
+        { return new Instant(instant1.TotalSeconds + instant2.TotalSeconds); }
+
+        public static Instant operator +(Instant instant1, double seconds)
+        { return new Instant(instant1.TotalSeconds + seconds); }
+
+        public static Instant operator -(Instant instant1, Instant instant2)
+        { return new Instant(instant1.TotalSeconds - instant2.TotalSeconds); }
+
+        public static Instant operator -(Instant instant1, double seconds)
+        { return new Instant(instant1.TotalSeconds - seconds); }
+
+        public static Instant operator *(Instant instant1, Instant instant2)
+        { return new Instant(instant1.TotalSeconds * instant2.TotalSeconds); }
+
+        public static Instant operator *(Instant instant1, double seconds)
+        { return new Instant(instant1.TotalSeconds * seconds); }
+
+        public static Instant operator /(Instant instant1, Instant instant2)
+        { return new Instant(instant1.TotalSeconds / instant2.TotalSeconds); }
+
+        public static Instant operator /(Instant instant1, double seconds)
+        { return new Instant(instant1.TotalSeconds / seconds); }
+        #endregion
     }
 }

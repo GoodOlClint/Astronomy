@@ -15,16 +15,23 @@ Allows calculations of any date after noon on January 1, 4713 BC.
 Helper class for calculating Sidereal time
 
 ```csharp
-	JulianDay JD = new JulianDay(2446895.5);
+	JulianDay JD = new JulianDay(1987, 04, 10, 0);
+
     double T = (JD.JulianDayNumber - 2451545.0) / 36525;
 
+    Instant MeanSiderealDate = new Instant(6, 41, 50.54841);
+    MeanSiderealDate += 8640184.812866 * T;
+    MeanSiderealDate += 0.093104 * Math.Pow(T, 2);
+    MeanSiderealDate += 0.0000062 * Math.Pow(T, 3);
 
-    Instant sidereal = new Instant(6, 41, 50.54841);
-    sidereal.AddSeconds(8640184.812866 * T);
-    sidereal.AddSeconds(0.093104 * Math.Pow(T,2));
-    sidereal.AddSeconds(0.0000062 * Math.Pow(T, 3));
+    Debug.Assert(MeanSiderealDate.Hour == 13);
+    Debug.Assert(MeanSiderealDate.Minute == 10);
+    Debug.Assert(Math.Round(MeanSiderealDate.Second, 4) == 46.3668);
 
-    Instant sidereal1 = new Instant(1.00273790935 * new Instant(19, 21, 0).TotalSeconds);
-
-    Instant sidereal2 = new Instant(sidereal1.TotalSeconds + sidereal.TotalSeconds);
+    Instant MeanSiderealInstant = new Instant(19, 21, 00);
+    MeanSiderealInstant = MeanSiderealInstant * 1.00273790935;
+    MeanSiderealInstant += MeanSiderealDate;
+    Debug.Assert(MeanSiderealInstant.Hour == 8);
+    Debug.Assert(MeanSiderealInstant.Minute == 34);
+    Debug.Assert(Math.Round(MeanSiderealInstant.Second, 4) == 57.0896);
 ```
