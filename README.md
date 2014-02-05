@@ -1,7 +1,7 @@
 ﻿#C# Astronomy Library
 
 ##Julian Day
-Allows calculations of any date after noon on January 1, 4713 BC.
+Allows calculations of any date after noon on 1 January, 4713 BC.
 
 ```csharp
     JulianDay JD = new JulianDay(333, 1, 27, 12);
@@ -38,7 +38,7 @@ Helper class for calculating Sidereal time
 
 ##Easter
 Used to calculate the date of Easter.
-Valid for all years since the Julian Epoch (January 1st 4713 BC);
+Valid for all years since the Julian Epoch (1 January 4713 BC);
 
 ```csharp
     Easter easter = new Easter(179);
@@ -48,4 +48,23 @@ Valid for all years since the Julian Epoch (January 1st 4713 BC);
     Easter easter2 = new Easter(1991);
     Debug.Assert(easter2.Date.Month == 03);
     Debug.Assert(easter2.Date.Day == 31);
+```
+
+##Islamic Calendar
+Used to calculate dates on the Islamic calendar.
+Valid for all dates since 16 July 622 on the Julian calendar.
+```csharp
+    IslamicCalendar MC = new IslamicCalendar(1421, 1, 1);
+    JulianDay JD = MC.ToJulianDay();
+
+    Debug.Assert(JD.Year == 2000);
+    Debug.Assert(JD.Month == 4);
+    Debug.Assert(JD.Day == 6);
+
+    JulianDay JD1 = new JulianDay(1991, 8, 13);
+    IslamicCalendar MC1 = IslamicCalendar.FromJulianDay(JD1);
+
+    Debug.Assert(MC1.Year == 1412);
+    Debug.Assert(MC1.Month == 2);
+    Debug.Assert(MC1.Day == 2);
 ```
