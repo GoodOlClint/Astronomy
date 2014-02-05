@@ -219,6 +219,32 @@ namespace Astronomy
             this.Second = INT(((((F * 24) - this.Hour) * 60) - this.Minute) * 60);
             this.Millisecond = INT(((((((F * 24) - this.Hour) * 60) - this.Minute) * 60) - this.Second) * 1000);
         }
+
+        #region Mathematical Operators
+        public static JulianDay operator +(JulianDay JDE1, JulianDay JDE2)
+        { return new JulianDay(JDE1.JulianDayNumber + JDE2.JulianDayNumber); }
+
+        public static JulianDay operator +(JulianDay JDE1, double Days)
+        { return new JulianDay(JDE1.JulianDayNumber + Days); }
+
+        public static JulianDay operator -(JulianDay JDE1, JulianDay JDE2)
+        { return new JulianDay(JDE1.JulianDayNumber - JDE2.JulianDayNumber); }
+
+        public static JulianDay operator -(JulianDay JDE1, double Days)
+        { return new JulianDay(JDE1.JulianDayNumber - Days); }
+
+        public static JulianDay operator *(JulianDay JDE1, JulianDay JDE2)
+        { return new JulianDay(JDE1.JulianDayNumber * JDE2.JulianDayNumber); }
+
+        public static JulianDay operator *(JulianDay JDE1, double Days)
+        { return new JulianDay(JDE1.JulianDayNumber * Days); }
+
+        public static JulianDay operator /(JulianDay JDE1, JulianDay JDE2)
+        { return new JulianDay(JDE1.JulianDayNumber / JDE2.JulianDayNumber); }
+
+        public static JulianDay operator /(JulianDay JDE1, double Days)
+        { return new JulianDay(JDE1.JulianDayNumber / Days); }
+        #endregion
     }
 
     public enum Calendar
