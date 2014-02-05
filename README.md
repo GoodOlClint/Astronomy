@@ -35,3 +35,17 @@ Helper class for calculating Sidereal time
     Debug.Assert(MeanSiderealInstant.Minute == 34);
     Debug.Assert(Math.Round(MeanSiderealInstant.Second, 4) == 57.0896);
 ```
+
+##Easter
+Used to calculate the date of Easter.
+Valid for all years since the Julian Epoch (January 1st 4713 BC);
+
+```csharp
+    Easter easter = new Easter(179);
+    Debug.Assert(easter.Date.Month == 04);
+    Debug.Assert(easter.Date.Day == 12);
+
+    Easter easter2 = new Easter(1991);
+    Debug.Assert(easter2.Date.Month == 03);
+    Debug.Assert(easter2.Date.Day == 31);
+```
