@@ -45,6 +45,7 @@
     <Compile Include="Instant.cs" />
     <Compile Include="JulianDay.cs" />
     <Compile Include="IslamicCalendar.cs" />
+    <Compile Include="AstroMath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
