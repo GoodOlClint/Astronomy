@@ -120,14 +120,14 @@ namespace Astronomy
             T = (JDE0 - 2451545.0) / 36525;
             T = Math.Round(T, 9);
 
-            W = (35999.373 * T) - 2.47;
-            Δλ = 1 + 0.0334 * Math.Cos(W) + 0.0007 * Math.Cos(2 * W);
+            W = 35999.373 * T - 2.47;
+            Δλ = 1 + 0.0334 * AstroMath.Cos(W) + 0.0007 * AstroMath.Cos(2 * W);
             S = 0;
 
             /* S = Σ[A Cos(B + (C * T))] */
             foreach (List<double> s in TableC)
             {
-                S += s[0] * Math.Cos(s[1] + (s[2] * T));
+                S += s[0] * AstroMath.Cos(s[1] + (s[2] * T));
             }
             S = Math.Floor(S);
 

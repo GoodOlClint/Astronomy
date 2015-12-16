@@ -20,16 +20,16 @@ namespace Astronomy
 
         public JulianDay ToJulianDay()
         {
-            int N = this.Day + INT(29.5001 * (this.Month - 1) + 0.99);
-            int Q = INT(this.Year / 30);
+            int N = this.Day + AstroMath.Int(29.5001 * (this.Month - 1) + 0.99);
+            int Q = AstroMath.Int(this.Year / 30);
             int R = this.Year % 30;
-            int A = INT(((11 * R) + 3) / 30);
+            int A = AstroMath.Int(((11 * R) + 3) / 30);
             int W = (404 * Q) + (354 * R) + 208 + A;
-            int Q1 = INT(W / 1461);
+            int Q1 = AstroMath.Int(W / 1461);
             int Q2 = W % 1461;
-            int G = 621 + 4 * (INT((7 * Q) + Q1));
-            int K = INT(Q2 / 365.2422);
-            int E = INT(365.2422 * K);
+            int G = 621 + 4 * (AstroMath.Int((7 * Q) + Q1));
+            int K = AstroMath.Int(Q2 / 365.2422);
+            int E = AstroMath.Int(365.2422 * K);
             int J = Q2 - E + N - 1;
             int X = G + K;
 
@@ -44,7 +44,7 @@ namespace Astronomy
                 X = X + 1;
             }
 
-            double JD = INT(365.25 * (X - 1)) + 1721423 + J;
+            double JD = AstroMath.Int(365.25 * (X - 1)) + 1721423 + J;
 
             return new JulianDay(JD);
         }
@@ -60,15 +60,15 @@ namespace Astronomy
                 M = M + 12;
             }
 
-            int α = INT(X / 100);
-            int β = 2 - α + INT(α / 4);
+            int α = AstroMath.Int(X / 100);
+            int β = 2 - α + AstroMath.Int(α / 4);
 
-            int b = INT(365.25 * X) + INT(30.6001 * (M + 1)) + D + 1722519 + β;
-            int c = INT((b - 122.1) / 365.25);
-            int d = INT(365.25 * c);
-            int e = INT((b - d) / 30.6001);
+            int b = AstroMath.Int(365.25 * X) + AstroMath.Int(30.6001 * (M + 1)) + D + 1722519 + β;
+            int c = AstroMath.Int((b - 122.1) / 365.25);
+            int d = AstroMath.Int(365.25 * c);
+            int e = AstroMath.Int((b - d) / 30.6001);
 
-            D = b - d - INT(30.6001 * e);
+            D = b - d - AstroMath.Int(30.6001 * e);
             if (e < 14)
             { M = e - 1; }
             else
@@ -79,24 +79,24 @@ namespace Astronomy
             int W = 2;
             if (X % 4 == 0)
             { W = 1; }
-            int N = INT((275 * M) / 9) - W * INT((M + 9) / 12) + D - 30;
+            int N = AstroMath.Int((275 * M) / 9) - W * AstroMath.Int((M + 9) / 12) + D - 30;
             int A = X - 623;
-            int B = INT(A / 4);
+            int B = AstroMath.Int(A / 4);
             int C = A % 4;
             double C1 = 365.2501 * C;
-            int C2 = INT(C1);
+            int C2 = AstroMath.Int(C1);
 
             if (C1 - C2 > 0.5)
             { C2 = C2 + 1; }
 
             int D1 = (1461 * B) + 170 + C2;
 
-            int Q = INT(D1 / 10631);
+            int Q = AstroMath.Int(D1 / 10631);
             int R = D1 % 10631;
-            int J = INT(R / 354);
+            int J = AstroMath.Int(R / 354);
             int K = R % 354;
 
-            int O = INT(((11 * J) + 14) / 30);
+            int O = AstroMath.Int(((11 * J) + 14) / 30);
 
             int H = (30 * Q) + J + 1;
             int JJ = K - O + N - 1;
@@ -116,10 +116,10 @@ namespace Astronomy
                 H = H + 1;
             }
 
-            int S = INT((JJ - 1) / 29.5);
+            int S = AstroMath.Int((JJ - 1) / 29.5);
 
             int m = 1 + S;
-            d = INT(JJ - (29.5 * S));
+            d = AstroMath.Int(JJ - (29.5 * S));
 
             if (JJ == 355)
             {
@@ -130,7 +130,6 @@ namespace Astronomy
             return new IslamicCalendar(H, m, d);
         }
 
-        private static int INT(double input)
-        { return Convert.ToInt32(Math.Floor(input)); }
+
     }
 }
