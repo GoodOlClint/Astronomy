@@ -87,12 +87,16 @@ namespace Astronomy
                 {
                     if (this.Year > 1582)
                     { return Astronomy.Calendar.Gregorian; }
-                    else if ((this.Year >= 1582) && (this.Month >= 10) && (this.Day >= 15))
-                    { return Astronomy.Calendar.Gregorian; }
                     else if (this.Year < 1582)
                     { return Astronomy.Calendar.Julian; }
-                    else if ((this.Year <= 1582) && (this.Month <= 10) && (this.Day <= 4))
+                    else if ((this.Year == 1582) && (this.Month < 10))
                     { return Astronomy.Calendar.Julian; }
+                    else if ((this.Year == 1582) && (this.Month > 10))
+                    { return Astronomy.Calendar.Gregorian; }
+                    else if ((this.Year == 1582) && (this.Month == 10) && (this.Day < 5))
+                    { return Astronomy.Calendar.Julian; }
+                    else if ((this.Year == 1582) && (this.Month > 10) && (this.Day > 14))
+                    { return Astronomy.Calendar.Gregorian; }
                     else
                     { throw new IndexOutOfRangeException("The dates October 5th - 14th 1582 are not valid"); }
                 }
