@@ -68,3 +68,12 @@ Valid for all dates since 16 July 622 on the Julian calendar.
     Debug.Assert(MC1.Month == 2);
     Debug.Assert(MC1.Day == 2);
 ```
+
+
+##Equinox Calendar
+Used to calculate dates of the equinoxes
+Valid for all years since the Julian Epoch (1 January 4713 BC);
+```csharp
+    double JDE = Equinox.Approximate(1962, Season.Summer);
+    Debug.Assert(JDE == 2437837.39245);
+```
