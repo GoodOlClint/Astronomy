@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -228,14 +229,20 @@ namespace Astronomy
         public static JulianDay operator +(JulianDay JDE1, JulianDay JDE2)
         { return new JulianDay(JDE1.JulianDayNumber + JDE2.JulianDayNumber); }
 
-        public static JulianDay operator +(JulianDay JDE1, double Days)
-        { return new JulianDay(JDE1.JulianDayNumber + Days); }
+        //public static JulianDay operator +(JulianDay JDE1, double Days)
+        //{ return new JulianDay(JDE1.JulianDayNumber + Days); }
+
+        public static double operator +(JulianDay JDE1, double Days)
+        { return JDE1.JulianDayNumber + Days; }
 
         public static JulianDay operator -(JulianDay JDE1, JulianDay JDE2)
         { return new JulianDay(JDE1.JulianDayNumber - JDE2.JulianDayNumber); }
 
-        public static JulianDay operator -(JulianDay JDE1, double Days)
-        { return new JulianDay(JDE1.JulianDayNumber - Days); }
+        //public static JulianDay operator -(JulianDay JDE1, double Days)
+        //{ return new JulianDay(JDE1.JulianDayNumber - Days); }
+
+        public static double operator -(JulianDay JDE1, double Days)
+        { return JDE1.JulianDayNumber - Days; }
 
         public static JulianDay operator *(JulianDay JDE1, JulianDay JDE2)
         { return new JulianDay(JDE1.JulianDayNumber * JDE2.JulianDayNumber); }
@@ -249,6 +256,18 @@ namespace Astronomy
         public static JulianDay operator /(JulianDay JDE1, double Days)
         { return new JulianDay(JDE1.JulianDayNumber / Days); }
         #endregion
+
+        public override string ToString()
+        {
+            int year = this.Year;
+            string era = "CE";
+            if (year <= 0)
+            {
+                era = "BCE";
+                year = Math.Abs(year) + 1;
+            }
+            return string.Format("{0}, {1} {2}, {3} {4}", this.DayOfWeek, this.Day, CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(this.Month), year, era);
+        }
     }
 
     public enum Calendar
