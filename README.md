@@ -36,20 +36,6 @@ Helper class for calculating Sidereal time
     Debug.Assert(Math.Round(MeanSiderealInstant.Second, 4) == 57.0896);
 ```
 
-##Easter
-Used to calculate the date of Easter.
-Valid for all years since the Julian Epoch (1 January 4713 BC);
-
-```csharp
-    Easter easter = new Easter(179);
-    Debug.Assert(easter.Date.Month == 04);
-    Debug.Assert(easter.Date.Day == 12);
-
-    Easter easter2 = new Easter(1991);
-    Debug.Assert(easter2.Date.Month == 03);
-    Debug.Assert(easter2.Date.Day == 31);
-```
-
 ##Islamic Calendar
 Used to calculate dates on the Islamic calendar.
 Valid for all dates since 16 July 622 on the Julian calendar.
@@ -69,11 +55,35 @@ Valid for all dates since 16 July 622 on the Julian calendar.
     Debug.Assert(MC1.Day == 2);
 ```
 
-
-##Equinox Calendar
-Used to calculate dates of the equinoxes
+##Equinox
+Used to calculate dates of the equinoxes and solstices
 Valid for all years since the Julian Epoch (1 January 4713 BC);
 ```csharp
     double JDE = Equinox.Approximate(1962, Season.Summer);
     Debug.Assert(JDE == 2437837.39245);
+```
+
+##Events
+Used to calculate the date of various yearly events.
+
+###Easter
+Valid for all years since the Julian Epoch (1 January 4713 BC);
+
+```csharp
+	JulianDay JD = Events.Easter(179);
+	Debug.Assert(JD.Month == 04);
+	Debug.Assert(JD.Day == 12);
+
+	JulianDay JD2 = Events.Easter(1991);
+	Debug.Assert(JD2.Month == 03);
+	Debug.Assert(JD2.Day == 31);
+```
+
+###Pesach (Passover)
+Valid for all years since the Hebrew Calendar Epoch (7 October 3761 BCE);
+
+```csharp
+	JulianDay JD3 = Events.Pesach(2015);
+    Debug.Assert(JD3.Month == 4);
+    Debug.Assert(JD3.Day == 4);
 ```
