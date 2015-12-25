@@ -31,6 +31,11 @@ namespace Astronomy
             { result += b; }
             return result;
         }
+        
+        public static int Mod(int a, int b)
+        {
+            return (int)Mod((double)a, (double)b);
+        }
 
         public static int Int(double input)
         { return Convert.ToInt32(Math.Floor(input)); }
