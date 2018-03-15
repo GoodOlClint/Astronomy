@@ -1,6 +1,6 @@
-﻿#C# Astronomy Library
+﻿# C# Astronomy Library
 
-##Julian Day
+## Julian Day
 Allows calculations of any date after noon on 1 January, 4713 BC.
 
 ```csharp
@@ -11,7 +11,7 @@ Allows calculations of any date after noon on 1 January, 4713 BC.
     Debug.Assert(JD1.JulianDayNumber == 2436116.31);
 ```
 
-##Instant
+## Instant
 Helper class for calculating Sidereal time
 
 ```csharp
@@ -36,7 +36,7 @@ Helper class for calculating Sidereal time
     Debug.Assert(Math.Round(MeanSiderealInstant.Second, 4) == 57.0896);
 ```
 
-##Islamic Calendar
+## Islamic Calendar
 Used to calculate dates on the Islamic calendar.
 Valid for all dates since 16 July 622 on the Julian calendar.
 ```csharp
@@ -55,7 +55,7 @@ Valid for all dates since 16 July 622 on the Julian calendar.
     Debug.Assert(MC1.Day == 2);
 ```
 
-##Equinox
+## Equinox
 Used to calculate dates of the equinoxes and solstices
 Valid for all years since the Julian Epoch (1 January 4713 BC);
 ```csharp
@@ -63,10 +63,10 @@ Valid for all years since the Julian Epoch (1 January 4713 BC);
     Debug.Assert(JDE == 2437837.39245);
 ```
 
-##Events
+## Events
 Used to calculate the date of various yearly events.
 
-###Easter
+### Easter
 Valid for all years since the Julian Epoch (1 January 4713 BC);
 
 ```csharp
@@ -79,7 +79,7 @@ Valid for all years since the Julian Epoch (1 January 4713 BC);
 	Debug.Assert(JD2.Day == 31);
 ```
 
-###Pesach (Passover)
+### Pesach (Passover)
 Valid for all years since the Hebrew Calendar Epoch (7 October 3761 BCE);
 
 ```csharp
