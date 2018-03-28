@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Easter.cs" />
     <Compile Include="Equinox.cs" />
+    <Compile Include="Events.cs" />
     <Compile Include="Instant.cs" />
     <Compile Include="JulianDay.cs" />
     <Compile Include="IslamicCalendar.cs" />
