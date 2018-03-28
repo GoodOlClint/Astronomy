@@ -15,7 +15,7 @@ Allows calculations of any date after noon on 1 January, 4713 BC.
 Helper class for calculating Sidereal time
 
 ```csharp
-	JulianDay JD = new JulianDay(1987, 04, 10, 0);
+    JulianDay JD = new JulianDay(1987, 04, 10, 0);
 
     double T = (JD.JulianDayNumber - 2451545.0) / 36525;
 
@@ -70,20 +70,20 @@ Used to calculate the date of various yearly events.
 Valid for all years since the Julian Epoch (1 January 4713 BC);
 
 ```csharp
-	JulianDay JD = Events.Easter(179);
-	Debug.Assert(JD.Month == 04);
-	Debug.Assert(JD.Day == 12);
+    JulianDay JD = Events.Easter(179);
+    Debug.Assert(JD.Month == 04);
+    Debug.Assert(JD.Day == 12);
 
-	JulianDay JD2 = Events.Easter(1991);
-	Debug.Assert(JD2.Month == 03);
-	Debug.Assert(JD2.Day == 31);
+    JulianDay JD2 = Events.Easter(1991);
+    Debug.Assert(JD2.Month == 03);
+    Debug.Assert(JD2.Day == 31);
 ```
 
 ### Pesach (Passover)
 Valid for all years since the Hebrew Calendar Epoch (7 October 3761 BCE);
 
 ```csharp
-	JulianDay JD3 = Events.Pesach(2015);
+    JulianDay JD3 = Events.Pesach(2015);
     Debug.Assert(JD3.Month == 4);
     Debug.Assert(JD3.Day == 4);
 ```
