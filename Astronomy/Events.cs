@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -18,7 +19,14 @@ namespace Astronomy
                 int e = ((2 * a) + (4 * b) - d + 34) % 7;
                 double f = (d + e + 114) / 31;
                 int g = (d + e + 114) % 31;
-
+                /* Debug information */
+                Debug.WriteLine("a\t= " + a);
+                Debug.WriteLine("b\t= " + b);
+                Debug.WriteLine("c\t= " + c);
+                Debug.WriteLine("d\t= " + d);
+                Debug.WriteLine("e\t= " + e);
+                Debug.WriteLine("f\t= " + f);
+                Debug.WriteLine("g\t= " + g);
                 return new JulianDay(Year, (int)f, g + 1);
             }
             else
@@ -37,7 +45,20 @@ namespace Astronomy
                 double m = (a + (11 * h) + (22 * l)) / 451;
                 double n = (h + l - (7 * m) + 114) / 31;
                 int p = (int)(h + l - (7 * m) + 114) % 31;
-
+                Debug.WriteLine("a\t= " + a);
+                Debug.WriteLine("b\t= " + b);
+                Debug.WriteLine("c\t= " + c);
+                Debug.WriteLine("d\t= " + d);
+                Debug.WriteLine("e\t= " + e);
+                Debug.WriteLine("f\t= " + f);
+                Debug.WriteLine("g\t= " + g);
+                Debug.WriteLine("h\t= " + h);
+                Debug.WriteLine("i\t= " + i);
+                Debug.WriteLine("k\t= " + k);
+                Debug.WriteLine("l\t= " + l);
+                Debug.WriteLine("m\t= " + m);
+                Debug.WriteLine("n\t= " + n);
+                Debug.WriteLine("p\t= " + p);
                 return new JulianDay(Year, (int)n, p + 1);
             }
         }
@@ -76,6 +97,17 @@ namespace Astronomy
                 month = month + 1;
                 D = D - 31;
             }
+            /* Debug information */
+            Debug.WriteLine("X\t= " + X);
+            Debug.WriteLine("C\t= " + C);
+            Debug.WriteLine("S\t= " + S);
+            Debug.WriteLine("A\t= " + A);
+            Debug.WriteLine("a\t= " + a);
+            Debug.WriteLine("b\t= " + b);
+            Debug.WriteLine("Q\t= " + Q);
+            Debug.WriteLine("j\t= " + j);
+            Debug.WriteLine("r\t= " + r);
+            Debug.WriteLine("D\t= " + D);
             return new JulianDay(Year, month, D);
         }
     }
