@@ -276,6 +276,16 @@ namespace Astronomy
             }
             return string.Format("{0}, {1} {2}, {3} {4}", this.DayOfWeek, this.Day, CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(this.Month), year, era);
         }
+
+        public override int GetHashCode()
+        {
+            return AstroMath.Int(this.JulianDayNumber);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (this.JulianDayNumber == ((JulianDay)obj).JulianDayNumber);
+        }
     }
 
     public enum Calendar
