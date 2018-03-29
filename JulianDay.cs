@@ -14,7 +14,7 @@ namespace Astronomy
         #region Public Static Methods
         public static JulianDay Now()
         {
-            return new JulianDay(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, DateTime.UtcNow.Hour, DateTime.UtcNow.Minute, DateTime.UtcNow.Second, DateTime.UtcNow.Millisecond);
+            return new JulianDay(DateTime.UtcNow);
         }
         #endregion
 
@@ -125,6 +125,14 @@ namespace Astronomy
             this.Day = 1;
             this.Hour = 12;
             this.JulianDayNumber = 0;
+        }
+
+        public JulianDay(DateTime dateTime)
+            : this(2451544.5 + ((dateTime.Ticks - 630822816000000000) / 10000d / 1000d) / 60d / 60d / 24d)
+        {
+            //DateTime objects are always Gregorian Calendar based. Throw an error to prevent unexpected results.
+            if (this.Calendar == Calendar.Julian)
+            { throw new ArgumentOutOfRangeException("The System.DateTime class should not be use for dates prior to October 15th 1582. Invalid calculations will result."); }
         }
 
         public JulianDay(int Year, int Month, int Day)
