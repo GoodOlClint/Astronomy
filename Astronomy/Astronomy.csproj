@@ -48,6 +48,15 @@
     <Compile Include="AstroMath.cs" />
     <Compile Include="LunarPhases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VSOP87\Planets\Earth.cs" />
+    <Compile Include="VSOP87\PlanetaryBase.cs" />
+    <Compile Include="VSOP87\Planets\Jupiter.cs" />
+    <Compile Include="VSOP87\Planets\Mars.cs" />
+    <Compile Include="VSOP87\Planets\Mercury.cs" />
+    <Compile Include="VSOP87\Planets\Neptune.cs" />
+    <Compile Include="VSOP87\Planets\Saturn.cs" />
+    <Compile Include="VSOP87\Planets\Uranus.cs" />
+    <Compile Include="VSOP87\Planets\Venus.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
