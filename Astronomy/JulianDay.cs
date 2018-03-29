@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -48,7 +49,13 @@ namespace Astronomy
                 else
                 { K = 2; }
 
-                return INT((275 * this.Month) / 9) - K * INT((this.Month + 9) / 12) + this.Day - 30;
+                Debug.WriteLine("K\t= " + K);
+                Debug.WriteLine("M\t= " + this.Month);
+                Debug.WriteLine("D\t= " + this.Day);
+                int N = INT((275 * this.Month) / 9) - K * INT((this.Month + 9) / 12) + this.Day - 30;
+                Debug.WriteLine("N\t= " + N);
+
+                return N;
             }
         }
 
@@ -191,9 +198,13 @@ namespace Astronomy
             {
                 int A = INT(y / 100);
                 B = 2 - A + INT(A / 4);
+                Debug.WriteLine("A\t= " + A);
             }
-
+            
             double JD = INT(365.25 * (y + 4716)) + INT(30.6001 * (m + 1)) + d + B - 1524.5;
+            
+            Debug.WriteLine("B\t= " + B);
+            Debug.WriteLine("JD\t= " + JD);
             this.JulianDayNumber = JD;
         }
 
@@ -209,6 +220,7 @@ namespace Astronomy
             {
                 int a = INT((Z - 1867216.25) / 36524.25);
                 A = Z + 1 + a - INT(a / 4);
+                Debug.WriteLine("a\t= " + a);
             }
             int B = A + 1524;
             int C = INT((B - 122.1) / 365.25);
@@ -231,6 +243,16 @@ namespace Astronomy
             this.Minute = INT(((F * 24) - this.Hour) * 60);
             this.Second = INT(((((F * 24) - this.Hour) * 60) - this.Minute) * 60);
             this.Millisecond = INT(((((((F * 24) - this.Hour) * 60) - this.Minute) * 60) - this.Second) * 1000);
+
+            Debug.WriteLine("A\t= " + A);
+            Debug.WriteLine("B\t= " + B);
+            Debug.WriteLine("C\t= " + C);
+            Debug.WriteLine("D\t= " + D);
+            Debug.WriteLine("E\t= " + E);
+            Debug.WriteLine("Day\t= " + this.Day);
+            Debug.WriteLine("Month\t= " + this.Month);
+            Debug.WriteLine("Year\t= " + this.Year);
+
         }
 
         #region Mathematical Operators
