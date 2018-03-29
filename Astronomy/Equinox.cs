@@ -143,50 +143,31 @@ namespace Astronomy
             return JDE;
         }
 
-        public static double Higher(int year, Season season)
-        {
-            double JDE0;
-            JDE0 = Mean(year, season);
-            return Higher(JDE0, season);
-        }
-
-        public static double Higher(double JDE, Season season)
-        {
-            throw new NotImplementedException();
-            double correction;
-            double λ;
-            λ = 0;
-            /* Formula 27.1 */
-            correction = 58 * Math.Sin((int)season * 90 - λ);
-            Debug.WriteLine("correction\t= " + correction);
-            Debug.WriteLine("Corrected JDE\t= " + (JDE + correction));
-            if (correction > 0.000005)
-            { return Higher(JDE + correction, season); }
-            Debug.WriteLine("Final JDE\t= " + JDE);
-            return JDE;
-        }
-
         public static double Exact(int year, Season season)
         {
             double JDE0;
-            JDE0 = Mean(year, season);
-            return Higher(JDE0, season);
+            JDE0 = Approximate(year, season);
+            return Exact(JDE0, season);
         }
 
         public static double Exact(double JDE, Season season)
         {
-            throw new NotImplementedException();
-            double correction;
-            double λ;
-            λ = 0;
-            /* Formula 27.1 */
-            correction = 58 * Math.Sin((int)season * 90 - λ);
-            Debug.WriteLine("correction\t= " + correction);
-            Debug.WriteLine("Corrected JDE\t= " + (JDE + correction));
-            if (correction > 0.000005)
-            { return Higher(JDE + correction, season); }
-            Debug.WriteLine("Final JDE\t= " + JDE);
-            return JDE;
+            VSOP87.Planets.Earth earth = new VSOP87.Planets.Earth();
+            double L = earth.CalculateHelocentricLongitude(JDE, 5);
+            double B = earth.CalculateHelocentricLatitude(JDE, 4);
+            double R = earth.CalculateRadiusVector(JDE, 5);
+            double dL, dB, aberration, nutation;
+            earth.CorrectLB(L, B, JDE, out dL, out dB);
+            aberration = -(20.4898 / R);
+            nutation = AstroMath.Rev(earth.CalculateNutation(JDE));
+            double ApparentGeocentricLongitude;
+            ApparentGeocentricLongitude = L - 180 - (nutation / 3600) + (dL / 3600) + (aberration / 3600);
+            double correction = 58 * AstroMath.Sin((int)season * 90 - ApparentGeocentricLongitude);
+            double JDE0 = JDE + correction;
+            if (correction <= 0.0000005 && correction >= -0.0000005)
+            { return JDE0; }
+            else
+            { return Exact(JDE0, season); }
         }
     }
     public enum Season : int
